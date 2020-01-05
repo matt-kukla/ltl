@@ -27,5 +27,5 @@ match f with
     | X(e) -> (match w with 
                     | h::t -> eval_fmla e t
                     | [] -> raise NoNextFrame )
-    | G(e) -> eval_fmla (Not(F(Not e))) w (* φ := ¬◊¬φ *)
+    | G(e) -> eval_fmla (Not(F(Not e))) w (* Gφ := ¬◊¬φ *)
     | F(e) -> eval_fmla (U(True, e)) w (* ◊φ := true U φ *) 
