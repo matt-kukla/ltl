@@ -2,9 +2,9 @@ open Formulae
 
 exception NoNextFrame
 
-(* Evaluate formula f over path w *)
-let rec eval_fmla f w =
-match f with
+(* Evaluate formula x over path w *)
+let rec eval_fmla x w =
+match x with
     | True -> true
     | False -> false
     | Var v -> List.assoc v (List.hd w)
@@ -21,7 +21,7 @@ match f with
                       | _ , true -> true )
     | W(e,f) -> eval_fmla (Or(U(e,f), G(e))) w (* e W f ≡ (e U f) ∨ G(e) *)
     | R(e,f) -> eval_fmla (W(f,And(e,f))) w (* e R f ≡ f W (f ∧ e) *)
-    | M(e,f) -> eval_fmla (Not(W(Not(e),Not(f)))) w (* e M f ≡ ¬(¬e W ¬f)*)
+    | M(e,f) -> eval_fmla (Not(W(Not(e),Not(f)))) w (* e M f ≡ ¬(¬e W ¬f) *)
     | Impl(e,f) -> eval_fmla (Or((Not e), f)) w
     | Iff(e,f) -> eval_fmla (And((Or((Not e),f)) ,(Or((Not f), e)))) w
     | X(e) -> (match w with 
