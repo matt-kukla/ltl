@@ -1,6 +1,6 @@
 open Formulae
 
-exception NoNextFrame
+exception No_next_frame
 
 (* Evaluate formula x over path w *)
 let rec eval_fmla x w =
