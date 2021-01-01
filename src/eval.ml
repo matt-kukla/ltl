@@ -26,6 +26,6 @@ match x with
     | Iff(e,f) -> eval_fmla (And((Or((Not e),f)) ,(Or((Not f), e)))) w
     | X(e) -> (match w with 
                     | h::t -> eval_fmla e t
-                    | [] -> raise NoNextFrame )
+                    | [] -> raise No_next_frame )
     | G(e) -> eval_fmla (Not(F(Not e))) w (* Gφ := ¬◊¬φ *)
     | F(e) -> eval_fmla (U(True, e)) w (* ◊φ := true U φ *) 
