@@ -40,8 +40,7 @@ let l = "(" and r = ")" in
         | G(e) -> "G(" ^ (fmla_as_string e) ^ r
         | F(e) -> "F(" ^ (fmla_as_string e) ^ r
 
-
-(* Reduce formula to only atomic operators/connectives *)
+(* Reduce formula to only atomic operators/connectives. *)
 let rec to_atomics x =
     match x with
         | True -> True
