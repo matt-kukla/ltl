@@ -2,7 +2,7 @@
 
 (** @author Matthew Kukla *)
 
-(** No next frame in path *)
+(** No next frame in path. *)
 exception No_next_frame
 
 (** Formulae *)
