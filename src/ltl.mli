@@ -5,7 +5,7 @@
 (** No next frame in path. *)
 exception No_next_frame
 
-(** Formulae *)
+(** Formula in  *)
 type expr =
     True
     | False
@@ -26,7 +26,7 @@ type expr =
 (** Represent formula as string. *)
 val fmla_as_string : expr -> string 
 
-(** Rewrite formula to only use atomic connectives / operators. *)
+(** Rewrite formula to only use atomic connectives/modali operators. *)
 val to_atomics : expr -> expr 
 
 (** Evaluate formula over path. *)
