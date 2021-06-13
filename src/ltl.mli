@@ -26,7 +26,7 @@ type expr =
 (** Represent formula as string. *)
 val fmla_as_string : expr -> string 
 
-(** Rewrite formula to only use atoic connectives / operators. *)
+(** Rewrite formula to only use atomic connectives / operators. *)
 val to_atomics : expr -> expr 
 
 (** Evaluate formula over path. *)
