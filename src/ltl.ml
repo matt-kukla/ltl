@@ -1,8 +1,5 @@
  exception No_next_frame
 
-(* Variable bindings at each state are represented by a string * bool list.
-   A path is represented as a list of binding lists. *)
-
 type expr = 
     | True
     | False
@@ -20,7 +17,6 @@ type expr =
     | G of expr             (* □f *)
     | F of expr             (* ◊f *)
 
-(* Represent formula as a string *)
 let rec fmla_as_string x = 
 let l = "(" and r = ")" in
     match x with
@@ -40,7 +36,6 @@ let l = "(" and r = ")" in
         | G(e) -> "G(" ^ (fmla_as_string e) ^ r
         | F(e) -> "F(" ^ (fmla_as_string e) ^ r
 
-(* Reduce formula to only atomic operators/connectives. *)
 let rec to_atomics x =
     match x with
         | True -> True
@@ -60,7 +55,6 @@ let rec to_atomics x =
         | X(e) -> X(to_atomics e)
         | F(e) -> U(True, to_atomics e) 
 
-(* Evaluate formula x over path w *)
 let rec eval_fmla x w =
 match x with
     | True -> true

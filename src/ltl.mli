@@ -1,11 +1,10 @@
-(** Library providing an implementation of linear temporal logic. *)
+(** Linear temporal logic *)
 
 (** @author Matthew Kukla *)
 
 (** No next frame in path. *)
 exception No_next_frame
 
-(** Formula in  *)
 type expr =
     True
     | False
@@ -14,19 +13,19 @@ type expr =
     | Or of expr * expr
     | Impl of expr * expr
     | Iff of expr * expr
-    | U of expr * expr
-    | R of expr * expr
-    | W of expr * expr
-    | M of expr * expr
+    | U of expr * expr (** until *)
+    | R of expr * expr (** release *)
+    | W of expr * expr (** weak *)
+    | M of expr * expr (** strong release *)
     | Not of expr
-    | X of expr
-    | G of expr
-    | F of expr
+    | X of expr (** ◯f *)
+    | G of expr (** □f *)
+    | F of expr (** ◊f *)
 
 (** Represent formula as string. *)
 val fmla_as_string : expr -> string 
 
-(** Rewrite formula to only use atomic connectives/modali operators. *)
+(** Rewrite formula to use only atomic connectives/modal operators. *)
 val to_atomics : expr -> expr 
 
 (** Evaluate formula over path. *)
