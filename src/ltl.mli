@@ -30,3 +30,6 @@ val to_atomics : expr -> expr
 
 (** Evaluate formula over path. *)
 val eval_fmla : expr -> (string * bool) list list -> bool
+
+(** Calculate maximum depth of nested modalities in a formula. *)
+val modal_depth : expr -> int

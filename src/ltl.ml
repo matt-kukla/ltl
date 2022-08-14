@@ -68,7 +68,7 @@ match x with
                   match a,b with
                       | false, false -> false
                       | true, false -> (match w with 
-                                            | h::t -> eval_fmla f t
+                                            | _::t -> eval_fmla f t
                                             | [] -> false )
                       | _ , true -> true )
     | W(e,f) -> eval_fmla (Or(U(e,f), G(e))) w (* e W f ≡ (e U f) ∨ G(e) *)
@@ -77,7 +77,16 @@ match x with
     | Impl(e,f) -> eval_fmla (Or((Not e), f)) w
     | Iff(e,f) -> eval_fmla (And((Or((Not e),f)) ,(Or((Not f), e)))) w
     | X(e) -> (match w with 
-                    | h::t -> eval_fmla e t
+                    | _::t -> eval_fmla e t
                     | [] -> raise No_next_frame )
     | G(e) -> eval_fmla (Not(F(Not e))) w (* Gφ := ¬◊¬φ *)
     | F(e) -> eval_fmla (U(True, e)) w (* ◊φ := true U φ *) 
+
+let rec modal_depth f = 
+match f with
+    | X(e) | F(e) | G(e) -> 1 + (modal_depth e)
+    | True | False | Var _ -> 0
+    | Not(e) -> modal_depth e
+    | And(l,r) | Or(l,r) | U(l,r) 
+    | W(l,r) | R(l,r) | M(l,r) | Impl(l,r)
+    | Iff(l,r) -> max (modal_depth l) (modal_depth r)
