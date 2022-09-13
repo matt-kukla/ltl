@@ -1,5 +1,5 @@
 # LTL
-A linear temporal logic system implemented in OCaml.
+Linear temporal logic implemented in OCaml.
 
 # License
 GNU GPL v3 - see [LICENSE](LICENSE) for details.
